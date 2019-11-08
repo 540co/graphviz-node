@@ -1,0 +1,22 @@
+{
+  "name": "grapviz-test",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "np": "^5.1.3"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.6.3",
+    "minami": "^1.2.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "graph": "dot -Tsvg -o tree.svg tree.dot",
+    "docs": "open docs/index.html",
+    "generate-docs": "./node_modules/.bin/jsdoc -r -c jsdoc.json -d docs -R README.md"
+  },
+  "author": "",
+  "license": "ISC"
+}
