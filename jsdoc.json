@@ -2,7 +2,7 @@
     "plugins": [],
     "recurseDepth": 10,
     "source": {
-        "include":["graph.js", "edge.js", "node.js", "attributes.js", "html-node.js"],
+        "include":["./lib/"],
         "exclude":["index.js"],
         "includePattern": ".+\\.js(doc|x)?$",
         "excludePattern": "(^|\\/|\\\\)_"

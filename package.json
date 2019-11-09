@@ -17,7 +17,6 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "graph": "dot -Tsvg -o tree.svg tree.dot",
     "docs": "open docs/index.html",
     "generate-docs": "./node_modules/.bin/jsdoc -r -c jsdoc.json -d docs -R README.md"
   },
