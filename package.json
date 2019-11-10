@@ -1,22 +1,32 @@
 {
-  "name": "grapviz-test",
-  "version": "0.0.0",
-  "description": "",
+  "name": "graphviz-node",
+  "version": "0.6.0",
+  "description": "Node.js wrapper for Graphviz.",
+  "keywords": ["node", "graphviz"],
   "main": "index.js",
+  "homepage": "https://github.com/540co/graphviz-node",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/540co/graphviz-node.git"
+  },
   "dependencies": {
-    "fs": "0.0.1-security",
-    "np": "^5.1.3"
+    "fs": "0.0.1-security"
   },
   "devDependencies": {
+    "eslint": "^6.6.0",
     "jsdoc": "^3.6.3",
-    "minami": "^1.2.3"
+    "minami": "^1.2.3",
+    "np": "^5.1.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "graph": "dot -Tsvg -o tree.svg tree.dot",
-    "docs": "open docs/index.html",
-    "generate-docs": "./node_modules/.bin/jsdoc -r -c jsdoc.json -d docs -R README.md"
+    "test": "echo \"Error: no test specified\"",
+    "docs": "npm run docs:build && open docs/index.html",
+    "docs:build": "./node_modules/.bin/jsdoc -r -c jsdoc.json -d docs -R README.md",
+    "lint": "./node_modules/.bin/eslint 'lib/**'"
   },
-  "author": "",
-  "license": "ISC"
+  "author": {
+    "name": "Mark Ostrander",
+    "email": "mark@540.co"
+  },
+  "license": "MIT"
 }
