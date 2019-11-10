@@ -9,7 +9,6 @@ A simple node wrapper for [Graphviz](http://www.graphviz.org/).
 To view docs run the following:
 
 ```bash
-npm run generate-docs
 npm run docs
 ```
 
