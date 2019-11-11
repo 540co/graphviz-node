@@ -2,7 +2,7 @@
 
 A simple node wrapper for [Graphviz](http://www.graphviz.org/).  
 
-> **NOTE:** This is a stripped down node implementation of [Graphviz](http://www.graphviz.org/). It does not support support undirected graph objects, clusters or subgraphs. For more bugs/issues or additional features please submit an issue.
+> **NOTE:** This is a stripped down node implementation of [Graphviz](http://www.graphviz.org/). It does not support support undirected graph objects. For more bugs/issues or additional features please submit an issue.
 
 ## Documentation
 
@@ -259,7 +259,7 @@ digraph "html" {
 
 ## Subgraphs & Clusters
 
-Graph and Digraph objects have an `addSubgraph() method for adding a subgraph to a graph.This is done by creating a ready-made graph object of the same kind as the only argument (whose content is added as a subgraph).
+Graph and Digraph objects have an `addSubgraph()` method for adding a subgraph to a graph.This is done by creating a ready-made graph object of the same kind as the only argument (whose content is added as a subgraph).
 
 > **Note:** If the name of a subgraph begins with 'cluster' (all lowercase) the layout engine will treat it as a special cluster subgraph (example). Also see the Subgraphs and Clusters section of [the DOT](https://www.graphviz.org/doc/info/lang.html) language documentation.
 
@@ -351,4 +351,4 @@ digraph "Subgraph Example" {
 
 ## Attribution
 
-This library was heavily inspired by https://github.com/glejeune/node-graphviz. Code was rewritten to support a stripped down version for specific use-cases. For a more complete set of features and support of graphviz, please consider using glejeune's implementation (Undirected graphs, clusters, subgraphs, etc.).
+This library was heavily inspired by https://github.com/glejeune/node-graphviz. Code was rewritten to support a stripped a specific use-case. For a more complete set of features and support of graphviz, please consider using glejeune's implementation.
