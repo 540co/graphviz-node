@@ -1,7 +1,7 @@
-let Graph = require('../index');
+let {Digraph} = require('../index');
 
 // Create new graph
-let g = new Graph();
+let g = new Digraph();
 
 let h1 = g.addHTMLNode('h1', {'shape':'none'});
 h1.setTableAttributes({'border':'0', 'cellborder':'1', 'cellspacing':'0', 'cellpadding': '4'});
