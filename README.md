@@ -2,7 +2,7 @@
 
 A simple node wrapper for [Graphviz](http://www.graphviz.org/).  
 
-> **NOTE:** This is a stripped down node implementation of [Graphviz](http://www.graphviz.org/). It does not support support undirected graph objects. For more bugs/issues or additional features please submit an issue.
+> **NOTE:** This is a stripped down node implementation of [Graphviz](http://www.graphviz.org/). It was mainly written to support HTML-like nodes. For more bugs/issues or additional features please submit an issue.
 
 ## Documentation
 
@@ -19,7 +19,7 @@ You can also view node examples in the `examples/` directory.
 ## Prerequisite
 
 - [Node](https://nodejs.org/en/)
-- [Graphviz](http://www.graphviz.org/)
+- [Graphviz](http://www.graphviz.org/) - Make sure you have a working installation
 
 ## Installation
 
@@ -30,10 +30,10 @@ npm install graphviz-node --save
 ## Getting Started
 
 ```js
-let Graph = require('../graph');
+let {Diraph} = require('graphviz-node');
 
 // Create new graph
-let g = new Graph();
+let g = new Digraph();
 
 // Create nodes
 let a = g.addNode("A", {"color": "blue"});
@@ -57,15 +57,15 @@ g.render("example");
 
 ## Basic Usage
 
-The graphviz module provides one `Graph` class. It creates graph descriptions in the DOT language for **directed** graphs.
+The graphviz module provides two classes: `Graph` and `Digraph`. They create graph descriptions in the DOT language for **undirected** and **directed** graphs. All the following examples will be using `Digraph`. Both classes utilize the same API. To see all available methods, you can run JS docs using the command `npm run docs` in the root folder. 
 
-Create a directed graph by instantiating a new Graph object:
+Create a graph by instantiating a new `Graph` or `Digraph` object:
 
 ```js
-let Graph = require('../graph');
+let {Graph, Digraph} = require('graphviz-node');
 
 // Create new graph
-let g = new Graph("Example");
+let g = new Digraph("Example");
 
 // New directed Graph object
 console.log(g);
@@ -122,7 +122,7 @@ let edgesAttributes = {
 }
 
 // Create new graph
-let g = new Graph();
+let g = new Digraph();
 
 // Set graph attributes
 g.set(graphAttributes);
@@ -177,7 +177,7 @@ e1.set({"style": "dotted"});
 
 ```js
 // Create new graph
-let g = new Graph();
+let g = new Digraph();
 g.set({'rankdir': 'LR'});
 
 let n1 = g.addNode("node 1");
@@ -206,7 +206,7 @@ The `addRow()` methods allows for an array of objects that define the `<td>` ele
 
 ```js
 // Create new graph
-let g = new Graph();
+let g = new Digraph();
 
 let h1 = g.addHTMLNode('h1', {'shape':'none'});
 h1.setTableAttributes({'border':'0', 'cellborder':'1', 'cellspacing':'0', 'cellpadding': '4'});
@@ -239,7 +239,7 @@ digraph {
 
 ```js
 // Create new graph
-let g = new Graph('html');
+let g = new Digraph('html');
 
 let h1 = g.addHTMLNode('abc', {'shape':'none', 'margin':'0'});
 h1.setTableAttributes({'border':'0', 'cellborder':'1', 'cellspacing':'0', 'cellpadding':'4'});
@@ -265,7 +265,7 @@ Graph and Digraph objects have an `addSubgraph()` method for adding a subgraph t
 
 ```js
 // Create new graph
-let g = new Graph("Subgraph Example");
+let g = new Digraph("Subgraph Example");
 
 // Create parent nodes
 let start = g.addNode("start", {"shape": "Mdiamond"});
@@ -289,7 +289,7 @@ g.addEdge(a3, end);
 g.addEdge(b3, end);
 
 // Create graph and set nodes and edges
-let c0 = new Graph("cluster0");
+let c0 = new Digraph("cluster0");
 c0.set({"style":"filled", "color":"lightgrey", "label": "process #1"});
 c0.setNodesAttributes({"style":"filled", "color":"white"});
 c0.addEdge(a0, a1);
@@ -297,7 +297,7 @@ c0.addEdge(a1, a2);
 c0.addEdge(a2, a3);
 
 // Create graph and set nodes and edges
-let c1 = new Graph("cluster1");
+let c1 = new Digraph("cluster1");
 c1.set({"color":"blue", "label":"process #2"});
 c1.setNodesAttributes({"style":"filled"});
 c1.addEdge(b0, b1);
@@ -351,4 +351,4 @@ digraph "Subgraph Example" {
 
 ## Attribution
 
-This library was heavily inspired by https://github.com/glejeune/node-graphviz. Code was rewritten to support a stripped a specific use-case. For a more complete set of features and support of graphviz, please consider using glejeune's implementation.
+This library was heavily inspired by https://github.com/glejeune/node-graphviz. Code was rewritten to support a stripped a specific use-case and *may* differ in syntax. If this library does not fit your use-case, please consider using glejeune's implementation.

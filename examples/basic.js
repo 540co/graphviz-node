@@ -1,7 +1,7 @@
-let Graph = require('../index');
+let {Digraph} = require('../index');
 
 // Create new graph
-let g = new Graph();
+let g = new Digraph();
 
 // Create nodes
 let a = g.addNode("A", {"color": "blue"});
