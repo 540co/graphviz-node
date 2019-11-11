@@ -2,7 +2,10 @@
   "name": "graphviz-node",
   "version": "0.6.0",
   "description": "Node.js wrapper for Graphviz.",
-  "keywords": ["node", "graphviz"],
+  "keywords": [
+    "node",
+    "graphviz"
+  ],
   "main": "index.js",
   "homepage": "https://github.com/540co/graphviz-node",
   "repository": {

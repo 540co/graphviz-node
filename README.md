@@ -2,7 +2,7 @@
 
 A simple node wrapper for [Graphviz](http://www.graphviz.org/).  
 
-> **NOTE:** This is a stripped down node implementation of [Graphviz](http://www.graphviz.org/). It does not support support undirected graph  objects, clusters or subgraphs. For more bugs/issues or additional features please submit an issue.
+> **NOTE:** This is a stripped down node implementation of [Graphviz](http://www.graphviz.org/). It does not support support undirected graph objects. For more bugs/issues or additional features please submit an issue.
 
 ## Documentation
 
@@ -14,7 +14,7 @@ npm run docs
 
 Js docs will automatically open in your browser.
 
-You can also view node examples in the `samples/` directory.
+You can also view node examples in the `examples/` directory.
 
 ## Prerequisite
 
@@ -57,7 +57,7 @@ g.render("example");
 
 ## Basic Usage
 
-The graphviz module provides one `Graph` class.  It creates graph descriptions in the DOT language for **directed** graphs.
+The graphviz module provides one `Graph` class. It creates graph descriptions in the DOT language for **directed** graphs.
 
 Create a directed graph by instantiating a new Graph object:
 
@@ -257,6 +257,98 @@ digraph "html" {
 
 ![HTML Node Table 2](./.assets/html_2.svg)
 
+## Subgraphs & Clusters
+
+Graph and Digraph objects have an `addSubgraph()` method for adding a subgraph to a graph.This is done by creating a ready-made graph object of the same kind as the only argument (whose content is added as a subgraph).
+
+> **Note:** If the name of a subgraph begins with 'cluster' (all lowercase) the layout engine will treat it as a special cluster subgraph (example). Also see the Subgraphs and Clusters section of [the DOT](https://www.graphviz.org/doc/info/lang.html) language documentation.
+
+```js
+// Create new graph
+let g = new Graph("Subgraph Example");
+
+// Create parent nodes
+let start = g.addNode("start", {"shape": "Mdiamond"});
+let end = g.addNode("end", {"shape": "Msquare"});
+let a0 = g.addNode("a0");
+let a1 = g.addNode("a1");
+let a2 = g.addNode("a2");
+let a3 = g.addNode("a3");
+let b0 = g.addNode("b0");
+let b1 = g.addNode("b1");
+let b2 = g.addNode("b2");
+let b3 = g.addNode("b3");
+
+// Create edges
+g.addEdge(start, a0);
+g.addEdge(start, b0);
+g.addEdge(a1, b3);
+g.addEdge(b2, a3);
+g.addEdge(a3, a0);
+g.addEdge(a3, end);
+g.addEdge(b3, end);
+
+// Create graph and set nodes and edges
+let c0 = new Graph("cluster0");
+c0.set({"style":"filled", "color":"lightgrey", "label": "process #1"});
+c0.setNodesAttributes({"style":"filled", "color":"white"});
+c0.addEdge(a0, a1);
+c0.addEdge(a1, a2);
+c0.addEdge(a2, a3);
+
+// Create graph and set nodes and edges
+let c1 = new Graph("cluster1");
+c1.set({"color":"blue", "label":"process #2"});
+c1.setNodesAttributes({"style":"filled"});
+c1.addEdge(b0, b1);
+c1.addEdge(b1, b2);
+c1.addEdge(b2, b3);
+
+// Associate subgraphs
+g.addSubgraph(c0);
+g.addSubgraph(c1);
+
+// Print dot file
+console.log(g.toDot());
+
+// Dot sytanx that gets generated...
+digraph "Subgraph Example" {
+  subgraph "cluster0" {
+    graph [style="filled", color="lightgrey", label="process #1"];
+    node [style="filled", color="white"];
+    "a0" -> "a1";
+    "a1" -> "a2";
+    "a2" -> "a3";
+  }
+  subgraph "cluster1" {
+    graph [color="blue", label="process #2"];
+    node [style="filled"];
+    "b0" -> "b1";
+    "b1" -> "b2";
+    "b2" -> "b3";
+  }
+  "start" [shape=Mdiamond];
+  "end" [shape=Msquare];
+  "a0";
+  "a1";
+  "a2";
+  "a3";
+  "b0";
+  "b1";
+  "b2";
+  "b3";
+  "start" -> "a0";
+  "start" -> "b0";
+  "a1" -> "b3";
+  "b2" -> "a3";
+  "a3" -> "a0";
+  "a3" -> "end";
+  "b3" -> "end";
+}
+```
+
+![Clusters](./.assets/clusters.svg)
+
 ## Attribution
 
-This library was heavily inspired by https://github.com/glejeune/node-graphviz. Code was rewritten to support a stripped down version for specific use-cases. For a more complete set of features and support of graphviz, please consider using glejeune's implementation (Undirected graphs, clusters, subgraphs, etc.).
+This library was heavily inspired by https://github.com/glejeune/node-graphviz. Code was rewritten to support a stripped a specific use-case. For a more complete set of features and support of graphviz, please consider using glejeune's implementation.
