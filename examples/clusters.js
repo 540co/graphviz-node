@@ -1,7 +1,7 @@
-let Graph = require('../index');
+let {Digraph} = require('../index');
 
 // Create new graph
-let g = new Graph("Subgraph Example");
+let g = new Digraph("Subgraph Example");
 
 // Create parent nodes
 let start = g.addNode("start", {"shape": "Mdiamond"});
@@ -25,7 +25,7 @@ g.addEdge(a3, end);
 g.addEdge(b3, end);
 
 // Create graph and set nodes and edges
-let c0 = new Graph("cluster0");
+let c0 = new Digraph("cluster0");
 c0.set({"style":"filled", "color":"lightgrey", "label": "process #1"});
 c0.setNodesAttributes({"style":"filled", "color":"white"});
 c0.addEdge(a0, a1);
@@ -33,7 +33,7 @@ c0.addEdge(a1, a2);
 c0.addEdge(a2, a3);
 
 // Create graph and set nodes and edges
-let c1 = new Graph("cluster1");
+let c1 = new Digraph("cluster1");
 c1.set({"color":"blue", "label":"process #2"});
 c1.setNodesAttributes({"style":"filled"});
 c1.addEdge(b0, b1);
