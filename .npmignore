@@ -2,4 +2,5 @@
 .git
 docs
 .assets
-samples
+examples
+.eslint.json

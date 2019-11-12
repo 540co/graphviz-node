@@ -30,7 +30,7 @@ npm install graphviz-node --save
 ## Getting Started
 
 ```js
-let {Diraph} = require('graphviz-node');
+let {Graph, Diraph} = require("graphviz-node");
 
 // Create new graph
 let g = new Digraph();
@@ -43,7 +43,7 @@ let c = g.addNode("C");
 // Add edge between the two nodes
 let e1 = g.addEdge(a, b);
 let e2 = g.addEdge(a, c);
-let e3 = g.addEdge(b, c, {'constraint': false});
+let e3 = g.addEdge(b, c, {"constraint": false});
 
 // Print dot file
 let dotScript = g.toDot();
@@ -62,7 +62,7 @@ The graphviz module provides two classes: `Graph` and `Digraph`. They create gra
 Create a graph by instantiating a new `Graph` or `Digraph` object:
 
 ```js
-let {Graph, Digraph} = require('graphviz-node');
+let {Graph, Digraph} = require("graphviz-node");
 
 // Create new graph
 let g = new Digraph("Example");
@@ -71,9 +71,9 @@ let g = new Digraph("Example");
 console.log(g);
 ```
 
-The constructor allows to set the graph's `name` for the DOT source and the rendered graph.
+The constructor allows to set the graph"s `name` for the DOT source and the rendered graph.
 
-Add nodes and edges to the graph object using it's `addNode()` and `addEdge()` methods.
+Add nodes and edges to the graph object using it"s `addNode()` and `addEdge()` methods.
 
 ```js
 // Create nodes
@@ -178,7 +178,7 @@ e1.set({"style": "dotted"});
 ```js
 // Create new graph
 let g = new Digraph();
-g.set({'rankdir': 'LR'});
+g.set({"rankdir": "LR"});
 
 let n1 = g.addNode("node 1");
 n1.set({"shape": "note"});
@@ -198,7 +198,7 @@ console.log(g.toDot());
 
 HTML nodes are the same as regular nodes with embedded HTML in the label attribute. This library supports the ability to create HTML-like nodes using special methods to help build the HTML table syntax automatically.
 
-The HTML node class `extends` the Node class with the addition of specific methods to build a table with rows for the node's label.
+The HTML node class `extends` the Node class with the addition of specific methods to build a table with rows for the node"s label.
 
 **Example 1**
 
@@ -208,8 +208,8 @@ The `addRow()` methods allows for an array of objects that define the `<td>` ele
 // Create new graph
 let g = new Digraph();
 
-let h1 = g.addHTMLNode('h1', {'shape':'none'});
-h1.setTableAttributes({'border':'0', 'cellborder':'1', 'cellspacing':'0', 'cellpadding': '4'});
+let h1 = g.addHTMLNode("h1", {"shape":"none"});
+h1.setTableAttributes({"border":"0", "cellborder":"1", "cellspacing":"0", "cellpadding": "4"});
 h1.addRow([
  {
      "data": "left",
@@ -239,13 +239,13 @@ digraph {
 
 ```js
 // Create new graph
-let g = new Digraph('html');
+let g = new Digraph("html");
 
-let h1 = g.addHTMLNode('abc', {'shape':'none', 'margin':'0'});
-h1.setTableAttributes({'border':'0', 'cellborder':'1', 'cellspacing':'0', 'cellpadding':'4'});
-h1.addRow([{'data':'<FONT COLOR="red">hello</FONT><BR/>world','attributes':{'rowspan':'3'}}, {'data':'b', 'attributes':{'colspan':'3'}}, {'data':'g', 'attributes':{'rowspan':'3', 'bgcolor':'lightgrey'}}, {'data':'h', 'attributes':{'rowspan':'3'}}]);
-h1.addRow([{'data':'c','attributes':{}}, {'data':'d', 'attributes':{'port':'here'}}, {'data':'e', 'attributes':{}}]);
-h1.addRow([{'data':'f','attributes':{'colspan':'3'}}]);
+let h1 = g.addHTMLNode("abc", {"shape":"none", "margin":"0"});
+h1.setTableAttributes({"border":"0", "cellborder":"1", "cellspacing":"0", "cellpadding":"4"});
+h1.addRow([{"data":"<FONT COLOR="red">hello</FONT><BR/>world","attributes":{"rowspan":"3"}}, {"data":"b", "attributes":{"colspan":"3"}}, {"data":"g", "attributes":{"rowspan":"3", "bgcolor":"lightgrey"}}, {"data":"h", "attributes":{"rowspan":"3"}}]);
+h1.addRow([{"data":"c","attributes":{}}, {"data":"d", "attributes":{"port":"here"}}, {"data":"e", "attributes":{}}]);
+h1.addRow([{"data":"f","attributes":{"colspan":"3"}}]);
 
 console.log(g.toDot());
 
@@ -259,9 +259,9 @@ digraph "html" {
 
 ## Subgraphs & Clusters
 
-Graph and Digraph objects have an `addSubgraph()` method for adding a subgraph to a graph.This is done by creating a ready-made graph object of the same kind as the only argument (whose content is added as a subgraph).
+Graph and Digraph objects have an `addSubgraph()` method for adding a subgraph to a graph. This is done by creating a ready-made graph object of the same kind as the only argument (whose content is added as a subgraph).
 
-> **Note:** If the name of a subgraph begins with 'cluster' (all lowercase) the layout engine will treat it as a special cluster subgraph (example). Also see the Subgraphs and Clusters section of [the DOT](https://www.graphviz.org/doc/info/lang.html) language documentation.
+> **Note:** If the name of a subgraph begins with "cluster" (all lowercase) the layout engine will treat it as a special cluster subgraph (example). Also see the Subgraphs and Clusters section of [the DOT](https://www.graphviz.org/doc/info/lang.html) language documentation.
 
 ```js
 // Create new graph
@@ -351,4 +351,4 @@ digraph "Subgraph Example" {
 
 ## Attribution
 
-This library was heavily inspired by https://github.com/glejeune/node-graphviz. Code was rewritten to support a stripped a specific use-case and *may* differ in syntax. If this library does not fit your use-case, please consider using glejeune's implementation.
+This library was heavily inspired by https://github.com/glejeune/node-graphviz. Code was rewritten to support a stripped a specific use-case and *may* differ in syntax. If this library does not fit your use-case, please consider using glejeune"s implementation.

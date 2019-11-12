@@ -1,16 +1,16 @@
-let {Digraph} = require('../index');
+let { Digraph } = require("../index");
 
 // Create new graph
-let g = new Digraph();;
-g.set({'rankdir': 'LR'});
+let g = new Digraph();
+g.set({ rankdir: "LR" });
 
 let n1 = g.addNode("node 1");
-n1.set({"shape": "note"});
+n1.set({ shape: "note" });
 
 let n2 = g.addNode("node 2");
-n2.set({"shape": "egg"});
+n2.set({ shape: "egg" });
 
 let e1 = g.addEdge(n1, n2);
-e1.set({"color": "purple"});
+e1.set({ color: "purple" });
 
 console.log(g.toDot());
