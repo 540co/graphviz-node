@@ -30,7 +30,7 @@ npm install graphviz-node --save
 ## Getting Started
 
 ```js
-let {Graph, Diraph} = require("graphviz-node");
+let {Graph, Digraph} = require("graphviz-node");
 
 // Create new graph
 let g = new Digraph();
